@@ -110,7 +110,8 @@ build/
 # -----------------
 .idea/
 .vscode/
-
+backend/.venv
+backend/.env
 # -----------------
 # Logs
 # -----------------
