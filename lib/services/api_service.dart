@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
 class ApiService {
-  static const String baseUrl = "http://10.212.9.232:5000";
+  static const String baseUrl = "http://192.168.1.37:5000";
 
   // ================= GENERIC GET =================
   static Future<dynamic> _get(String path) async {

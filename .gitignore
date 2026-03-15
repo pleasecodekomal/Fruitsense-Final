@@ -1,0 +1,122 @@
+# =====================
+# Python
+# =====================
+__pycache__/
+*.pyc
+
+# =====================
+# Environment
+# =====================
+.env
+venv/
+.env.*
+/build
+# =====================
+# ML Models
+# =====================
+*.h5
+models/
+*.pkl
+# =====================
+# Datasets
+# =====================
+*.csv
+*.log
+.idea/
+.vscode/
+# =====================
+# Uploads
+# =====================
+backend/uploads
+filelist.txt
+# =====================
+# Flutter
+# =====================
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# =====================
+# Logs
+# =====================
+*.log
+
+# =====================
+# Temporary
+# =====================
+filelist.txt
+uploads/
+
+# Flutter
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android
+android/.gradle
+android/local.properties
+
+# Python virtual environment
+backend/.dart_tool
+backend/venv/
+backend/env
+backend/__pycache__
+*.pyc
+backend/uploads
+
+# -----------------
+# Python
+# -----------------
+__pycache__/
+*.pyc
+backend/venv/
+backend/env/
+
+# -----------------
+# Environment
+# -----------------
+.env
+backend/.env
+
+# -----------------
+# ML Models
+# -----------------
+*.h5
+*.pkl
+backend/models/
+
+# -----------------
+# Datasets
+# -----------------
+*.csv
+
+# -----------------
+# Uploads
+# -----------------
+backend/uploads/
+
+# -----------------
+# Flutter
+# -----------------
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# -----------------
+# IDE
+# -----------------
+.idea/
+.vscode/
+
+# -----------------
+# Logs
+# -----------------
+*.log
+
+# -----------------
+# Temp files
+# -----------------
+filelist.txt

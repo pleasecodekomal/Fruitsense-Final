@@ -27,6 +27,22 @@ class _ResultsScreenState extends State<ResultsScreen> {
     "Aurangabad",
   ];
 
+  /// Convert numeric grade to readable label
+  String gradeLabel(dynamic grade) {
+    if (grade == null) return "-";
+
+    switch (grade) {
+      case 1:
+        return "1 (High Quality)";
+      case 2:
+        return "2 (Medium Quality)";
+      case 3:
+        return "3 (Low Quality)";
+      default:
+        return grade.toString();
+    }
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -52,7 +68,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
     try {
       final res = await ApiService.getMarketRecommendation(
         location: selectedLocation!,
-        quality: latest!['grade'],
+        quality: latest!['grade'].toString(),
         fruit: inputs?['fruit'] ?? 'fruit',
       );
 
@@ -110,9 +126,21 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   color: themeGreen,
                 ),
               ),
+
               const SizedBox(height: 12),
-              _infoTile("Grade", latest!['grade'], themeGreen),
-              _infoTile("Confidence", "$formattedConfidence%", themeGreen),
+
+              _infoTile(
+                "Grade",
+                gradeLabel(latest!['grade']),
+                themeGreen,
+              ),
+
+              _infoTile(
+                "Confidence",
+                "$formattedConfidence%",
+                themeGreen,
+              ),
+
               if (latest!['summary'] != null)
                 _summaryBox(latest!['summary']),
             ],
@@ -127,31 +155,34 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 color: themeGreen,
               ),
             ),
+
             const SizedBox(height: 8),
 
             _locationDropdown(themeGreen),
 
             const SizedBox(height: 16),
-ElevatedButton(
-  onPressed: loadingMarket ? null : _loadMarketRecommendation,
-  style: ElevatedButton.styleFrom(
-    backgroundColor: themeGreen,
-    padding: const EdgeInsets.symmetric(vertical: 14),
-  ),
-  child: loadingMarket
-      ? const CircularProgressIndicator(color: Colors.white)
-      : const Text(
-          'Get Market Recommendation',
-          style: TextStyle(
-            color: Colors.white, // text color
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-),
+
+            ElevatedButton(
+              onPressed: loadingMarket ? null : _loadMarketRecommendation,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: themeGreen,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+              ),
+              child: loadingMarket
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const Text(
+                      'Get Market Recommendation',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+            ),
 
             if (marketAdvice != null) ...[
               const SizedBox(height: 20),
+
               Text(
                 'Recommended Market',
                 style: TextStyle(
@@ -160,6 +191,7 @@ ElevatedButton(
                   color: themeGreen,
                 ),
               ),
+
               const SizedBox(height: 6),
 
               Text(
@@ -172,6 +204,7 @@ ElevatedButton(
               ),
 
               const SizedBox(height: 10),
+
               Text(
                 marketAdvice!['reason'] ?? '',
                 style: const TextStyle(fontSize: 15, height: 1.4),
@@ -179,10 +212,12 @@ ElevatedButton(
 
               if ((marketAdvice!['eligible_markets'] as List).length > 1) ...[
                 const SizedBox(height: 14),
+
                 const Text(
                   'Other suitable markets',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
+
                 ...marketAdvice!['eligible_markets']
                     .where((m) => m != marketAdvice!['recommended_market'])
                     .map<Widget>((m) => _marketChip(m))
@@ -192,6 +227,7 @@ ElevatedButton(
 
             if (priceResult != null) ...[
               const SizedBox(height: 20),
+
               Text(
                 'Price Estimation',
                 style: TextStyle(
@@ -200,7 +236,9 @@ ElevatedButton(
                   color: themeGreen,
                 ),
               ),
+
               const SizedBox(height: 8),
+
               Text(
                 '₹${priceResult!['estimated_price_per_quintal']} / Quintal',
                 style: const TextStyle(
@@ -285,23 +323,23 @@ ElevatedButton(
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text('Results'),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.bar_chart),
-          onPressed: () => Navigator.pushNamed(context, '/dashboard'),
-        ),
-      ],
-    ),
-    body: ListView(
-      padding: const EdgeInsets.all(14),
-      children: [
-        _buildLatestCard(),
-      ],
-    ),
-  );
-}
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Results'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.bar_chart),
+            onPressed: () => Navigator.pushNamed(context, '/dashboard'),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(14),
+        children: [
+          _buildLatestCard(),
+        ],
+      ),
+    );
+  }
 }
