@@ -1,0 +1,2 @@
+C:/Users/Dell/Desktop/integration_dd/fruitsense_mobile/android/app/.cxx/Debug/4x513x4a/x86/CMakeFiles/edit_cache.dir
+C:/Users/Dell/Desktop/integration_dd/fruitsense_mobile/android/app/.cxx/Debug/4x513x4a/x86/CMakeFiles/rebuild_cache.dir
